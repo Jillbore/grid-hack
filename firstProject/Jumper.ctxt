@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Jumper()
+comment1.params=color
+comment1.target=Jumper(Color)
+comment2.target=void\ act()
+comment2.text=\nAct\ -\ do\ whatever\ the\ Jumper\ wants\ to\ do.\ This\ method\ is\ called\ whenever\nthe\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n\n
+comment3.target=void\ turn()
+comment4.target=void\ move()
+comment5.target=void\ jump()
+comment6.target=boolean\ canMove()
+comment7.target=boolean\ canJump()
+numComments=8

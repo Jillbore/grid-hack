@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Bug()
+comment0.text=\nConstructs\ a\ red\ bug.\n\n
+comment1.params=bugColor
+comment1.target=Bug(Color)
+comment1.text=\nConstructs\ a\ bug\ of\ a\ given\ color.\n@param\ bugColor\ the\ color\ for\ this\ bug\n\n
+comment2.target=void\ act()
+comment2.text=\nMoves\ if\ it\ can\ move,\ turns\ otherwise.\n\n
+comment3.target=void\ turn()
+comment3.text=\nTurns\ the\ bug\ 45\ degrees\ to\ the\ right\ without\ changing\ its\ location.\n\n
+comment4.target=void\ move()
+comment4.text=\nMoves\ the\ bug\ forward,\ putting\ a\ flower\ into\ the\ location\ it\ previously\noccupied.\n\n
+comment5.target=boolean\ canMove()
+comment5.text=\nTests\ whether\ this\ bug\ can\ move\ forward\ into\ a\ location\ that\ is\ empty\ or\ncontains\ a\ flower.\n@return\ true\ if\ this\ bug\ can\ move.\n\n
+numComments=6
