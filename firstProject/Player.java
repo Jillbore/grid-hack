@@ -9,41 +9,56 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player  extends GridActor
 {
     private int count = 0;
+	private int hp, str, luck;
 
     // Creates a player for the user to move with
     public Player()
     {
-        
+        hp = 10;
+		str = 10;
+		luck = 2;
     }
     
     /**
-     * Act - Does whatever the Player wants to do. This method is called whenever
+     * Act - Does whatever the Player has specified to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w"))
+        if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("j")) // player goes up
         {
             move(0);
             count++;
             //TextMessage("hello", 50);
         }
-        if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d"))
+        if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("l")) // player goes right
         {
             move(90);
             count++;
         }
-        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s"))
+        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("k")) // player goes down
         {
             move(180);
             count++;
         }
-        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("h")) // player goes left
         {
             move(270);
             count++;
         }
-        Greenfoot.delay(2);
+		if(Greenfoot.isKeyDown("q")) // player drinks from fountain (if fountain is there)
+		{
+			quaff();
+			count++;
+		}
+		if(Greenfoot.isKeyDown("s")) // player searches for hidden areas
+		{
+			search();
+			count++;
+		}
+		
+		// delays next key check to get more accurate results
+        Greenfoot.delay(4);
     }
     
     /**
@@ -89,6 +104,26 @@ public class Player  extends GridActor
     {
         return count;
     }
+	
+	 /**
+	  * Searches for hidden squares for doors, success is based on chance + luck
+	  */
+	private void search()
+	{
+		double prob = 0.0;
+		prob = Math.random() * luck;
+		
+		// search is successful
+		if(prob > 0.78)
+		{
+			// process all actors 1 space away and remove any secret walls/doors
+		}
+	}
+	
+	private void quaff()
+	{
+	    
+	}
     
     
 }
