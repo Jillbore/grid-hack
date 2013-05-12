@@ -1,0 +1,197 @@
+/* 
+ * AP(r) Computer Science GridWorld Case Study:
+ * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
+ *
+ * This code is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation.
+ *
+ * This code is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * @author Cay Horstmann
+ */
+
+/*
+ * Slightly modified for use in Greenfoot.
+ * @author Michael Kolling
+ */
+
+import greenfoot.Greenfoot;
+import greenfoot.GreenfootImage;
+import greenfoot.World;
+
+import java.util.ArrayList;
+
+/**
+ * An <code>ActorWorld</code> is occupied by actors. <br />
+ * This class is not tested on the AP CS A and AB exams.
+ */
+
+public class ActorWorld extends World
+{
+    private static final int DEFAULT_ROWS = 46;
+    private static final int DEFAULT_COLS = 28;
+
+    private Grid<GridActor> grid;
+    
+    /**
+     * Constructs an actor world with a default grid.
+     */
+    public ActorWorld()
+    {
+        super(DEFAULT_ROWS, DEFAULT_COLS, 25);
+        paintGrid();
+        grid = new BoundedGrid<GridActor>(this);
+        firstProjectSetup();
+    }
+
+    /**
+     * Adds an actor to this world at a given location.
+     * @param loc the location at which to add the actor
+     * @param occupant the actor to add
+     */
+    public void add(Location loc, GridActor occupant)
+    {
+        occupant.putSelfInGrid(getGrid(), loc);
+    }
+
+    /**
+     * Adds an occupant at a random location.
+     * @param occupant the occupant to add
+     */
+    public void add(GridActor occupant)
+    {
+        Location loc = getRandomEmptyLocation();
+        if (loc != null)
+            add(loc, occupant);
+    }
+
+    /**
+     * Removes an actor from this world.
+     * @param loc the location from which to remove an actor
+     * @return the removed actor, or null if there was no actor at the given
+     * location.
+     */
+    public GridActor remove(Location loc)
+    {
+        GridActor occupant = getGrid().get(loc);
+        if (occupant == null)
+            return null;
+        occupant.removeSelfFromGrid();
+        return occupant;
+    }
+
+    /**
+     * Gets a random empty location in this world.
+     * @return a random empty location
+     */
+    public Location getRandomEmptyLocation()
+    { 
+        int rows = getHeight();
+        int cols = getWidth();
+
+        // get all valid empty locations and pick one at random
+        ArrayList<Location> emptyLocs = new ArrayList<Location>();
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+            {
+                Location loc = new Location(i, j);
+                if (grid.isValid(loc) && grid.get(loc) == null)
+                    emptyLocs.add(loc);
+            }
+        if (emptyLocs.size() == 0)
+            return null;
+        int r = Greenfoot.getRandomNumber(emptyLocs.size());
+        return emptyLocs.get(r);
+    }
+        
+    /**
+     * Greenfoot: Paint the grid pattern onto the background.
+     */
+    public Grid<GridActor> getGrid()
+    {
+        return grid;
+    }
+    
+    /**
+     * Greenfoot: Paint the grid pattern onto the background.
+     */
+    private void paintGrid()
+    {
+        GreenfootImage bg = getBackground();
+        int cellSize = getCellSize();
+        bg.setColor(java.awt.Color.BLACK);
+        for (int x = 0; x < bg.getWidth(); x += cellSize) {
+            bg.drawLine(x, 0, x, bg.getHeight());
+        }
+        for (int y = 0; y < bg.getHeight(); y += cellSize) {
+            bg.drawLine(0, y, bg.getWidth(), y);
+        }
+        setBackground(bg);
+    }
+
+    /**
+     * This method contains the code from the 'BugRunner' class from the 
+     * 'firstProject' example from the original version.
+     */
+    public void firstProjectSetup() 
+    {
+        //first digit is the row, each other digit is a column
+        //together, they form an (x,y) point
+        
+        //You can thank me now, Michael; I thought of a genius system    -Tyler
+        
+        int[] row0 = {0, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] row1 = {1, 1, 10};
+        int[] row2 = {2, 1, 10, 14, 15, 16};
+        int[] row3 = {3, 1, 11, 12, 13, 17, 18};
+        int[] row4 = {4, 2, 3, 4, 11, 16, 19, 20, 21, 22, 23, 24, 25, 26};
+        int[] row5 = {5, 1, 7, 9, 11, 13, 15, 20, 27};
+        int[] row6 = {6, 1, 4, 5, 7, 8, 9, 13, 14, 20, 27};
+        int[] row7 = {7, 2, 3, 9, 12, 27};
+        int[] row8 = {8, 1, 5, 6, 7, 10, 14, 15, 20, 27};
+        int[] row9 = {9, 2, 3, 5, 7, 12, 15, 16, 19, 20, 27};
+        int[] row10 = {10, 1, 7, 8, 9, 10, 12, 14, 17, 18, 19, 20, 21, 22, 23, 24, 27};
+        int[] row11 = {11, 1, 10, 12, 23, 24, 27};
+        int[] row12 = {12, 1, 8, 10, 12, 14, 15, 16, 17, 18, 19, 20, 23, 24, 27};
+        int[] row13 = {13, 1, 7, 10,  11, 12, 14, 18, 20, 22, 23, 27};
+        int[] row14 = {14, 1, 7, 9, 10, 12, 14, 18, 20, 21, 22, 23, 24, 25, 26, 27};
+        int[] row15 = {15, 2, 4, 5, 6, 7, 8, 12, 14, 15, 16, 17, 18, 19, 20, 23, 27};
+        int[] row16 = {16, 2, 4, 10, 12, 20, 23, 27};
+        int[] row17 = {17, 2, 6, 7, 9, 10, 13, 14, 16, 20, 27};
+        int[] row18 = {18, 2, 3, 4, 6, 10, 11, 14, 16, 20, 23, 27};
+        
+        build(row0);
+        build(row1);
+        build(row2);
+        build(row3);
+        build(row4);
+        build(row5);
+        build(row6);
+        build(row7);
+        build(row8);
+        build(row9);
+        build(row10);
+        build(row11);
+        build(row12);
+        build(row13);
+        build(row14);
+        build(row15);
+        build(row16);
+        build(row17);
+        build(row18);
+        
+        
+        add(new Location(2, 2), new Player());
+        
+    }
+    
+    public void build(int row[])
+    {
+        for(int k = 1; k < row.length; k++)//places a wall at each point made by the array
+        add(new Location(row[0], row[k]), new Wall());
+    }
+}

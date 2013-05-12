@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Flower()
+comment0.text=\nConstructs\ a\ pink\ flower.\n\n
+comment1.params=initialColor
+comment1.target=Flower(Color)
+comment1.text=\nConstructs\ a\ flower\ of\ a\ given\ color.\n@param\ initialColor\ the\ initial\ color\ of\ this\ flower\n\n
+comment2.target=void\ act()
+comment2.text=\nCauses\ the\ color\ of\ this\ flower\ to\ darken.\n\n
+numComments=3

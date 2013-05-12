@@ -23,7 +23,12 @@ public class Mushroom  extends Item
     // Just sits still and does nothing
     public void act()
     {
-        // No action method required
+        Color c = getColor();
+        int red = (int) (c.getRed() * (0.5));
+        int green = (int) (c.getGreen() * (0.5));
+        int blue = (int) (c.getBlue() * (0.5));
+
+        setColor(new Color(red, green, blue));
     }
 }
 

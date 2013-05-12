@@ -8,15 +8,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player  extends GridActor
 {
+    
     private int count = 0;
-	private int hp, str, luck;
+    private int hp, str;
+    private double luck;
 
     // Creates a player for the user to move with
     public Player()
     {
         hp = 10;
-		str = 10;
-		luck = 2;
+        str = 10;
+        luck = 1.5;
+    }
+
+    // Creates a player at a certain coordinate
+    public Player(int x, int y)
+    {
+        hp = 10;
+        str = 10;
+        luck = 1.5;
+        Location loc = new Location(x, y);
+        GridActor gr = new GridActor();
+        //putSelfInGrid(this, loc);
     }
     
     /**
@@ -29,35 +42,34 @@ public class Player  extends GridActor
         {
             move(0);
             count++;
-            //TextMessage("hello", 50);
         }
         if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("l")) // player goes right
         {
             move(90);
             count++;
         }
-        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("k")) // player goes down
+        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("j")) // player goes down
         {
             move(180);
             count++;
         }
-        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("h")) // player goes left
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("k")) // player goes left
         {
             move(270);
             count++;
         }
-		if(Greenfoot.isKeyDown("q")) // player drinks from fountain (if fountain is there)
-		{
-			quaff();
-			count++;
-		}
-		if(Greenfoot.isKeyDown("s")) // player searches for hidden areas
-		{
-			search();
-			count++;
-		}
-		
-		// delays next key check to get more accurate results
+        if(Greenfoot.isKeyDown("q")) // player drinks from fountain (if fountain is there)
+        {
+            quaff();
+            count++;
+        }
+        if(Greenfoot.isKeyDown("s")) // player searches for hidden areas
+        {
+            search();
+            count++;
+        }
+        
+        // delays next key check to get more accurate results
         Greenfoot.delay(4);
     }
     
@@ -104,26 +116,64 @@ public class Player  extends GridActor
     {
         return count;
     }
-	
-	 /**
-	  * Searches for hidden squares for doors, success is based on chance + luck
-	  */
-	private void search()
-	{
-		double prob = 0.0;
-		prob = Math.random() * luck;
-		
-		// search is successful
-		if(prob > 0.78)
-		{
-			// process all actors 1 space away and remove any secret walls/doors
-		}
-	}
-	
-	private void quaff()
-	{
-	    
-	}
     
+     /**
+      * Searches for hidden squares for doors, success is based on chance + luck
+      */
+    private void search()
+    {
+        double prob = 0.0;
+        prob = Math.random() * luck;
+        
+        // search is successful
+        if(prob > 0.94)
+        {
+            // process all actors 1 space away and remove any secret walls/doors
+        }
+    }
+
+     /**
+      * Drinks from a fountain 
+        */
+     private void quaff()
+     {
+        Grid<GridActor> gr = getGrid();
+        Location loc = getLocation(); // stores the current location of player
+        Location next = loc.getAdjacentLocation(0); // it chooses up by default
+        
+        if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("l")) // player chooses right
+        {
+            next = loc.getAdjacentLocation(90); // gets actor to the east
+        }
+        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("k")) // player chooses down
+        {
+            next = loc.getAdjacentLocation(180); // gets actor to the south
+        }
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("h")) // player chooses left
+        {
+            next = loc.getAdjacentLocation(270); // gets actor to the west
+        }
+
+        GridActor neighbor = gr.get(next);
+        if(neighbor instanceof Fountain)
+        {
+            //TextMessage("You drink from the muddy water.", 100);
+
+            // chooses your "reward"
+            double prob = Math.random() * luck;
+
+            if(prob > 0.90)
+            {
+                //TextMessage("It goes up your nose and you lose 1 HP", 100);
+                takeDamage(1);
+            }
+        }
+
+     }
+    
+     public void takeDamage(int dmg)
+     {
+         hp -= dmg;    
+     }
     
 }

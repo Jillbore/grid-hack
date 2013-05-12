@@ -38,7 +38,7 @@ public class GridActor extends greenfoot.Actor
      */
     public GridActor()
     {
-        color = Color.BLUE;
+        //color = Color.BLUE;
         setDirection(Location.NORTH);
         location = null;
     }

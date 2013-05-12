@@ -9,10 +9,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Wall  extends GridActor
 {
+    // Constructs a wall
     public Wall()
     {
-        // Constructs a wall
+        
     }
+
+    // Constructs a wall at a coordinate
+    public Wall(int x, int y)
+    {
+        /*Location loc = new Location(x, y);
+        GridActor gr = new GridActor();
+        putSelfInGrid(this, loc);*/
+    }
+
     /**
      * Act - Sits still and blocks movement
      */

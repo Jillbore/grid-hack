@@ -10,7 +10,7 @@ import java.util.*;
 public class TextMessage  extends Actor
 {
     String characterArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ:   0123456789";
-    GreenfootImage font = new GreenfootImage("Font.gif");
+    GreenfootImage font = new GreenfootImage("font.gif");
     static GreenfootImage character = new GreenfootImage(40,30);
     GreenfootImage display = new GreenfootImage(400,30);
   
