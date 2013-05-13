@@ -1,9 +1,7 @@
 #BlueJ class context
-comment0.params=
 comment0.target=Wall()
 comment1.params=x\ y
 comment1.target=Wall(int,\ int)
-comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ Sits\ still\ and\ blocks\ movement\r\n
+comment2.text=\nAct\ -\ Sits\ still\ and\ blocks\ movement\n\n
 numComments=3

@@ -1,13 +1,12 @@
 #BlueJ class context
 comment0.params=loc
-comment0.target=java.util.ArrayList\ getNeighbors(Location)
+comment0.target=ArrayList<E>\ getNeighbors(Location)
 comment1.params=loc
-comment1.target=java.util.ArrayList\ getValidAdjacentLocations(Location)
+comment1.target=ArrayList<Location>\ getValidAdjacentLocations(Location)
 comment2.params=loc
-comment2.target=java.util.ArrayList\ getEmptyAdjacentLocations(Location)
+comment2.target=ArrayList<Location>\ getEmptyAdjacentLocations(Location)
 comment3.params=loc
-comment3.target=java.util.ArrayList\ getOccupiedAdjacentLocations(Location)
-comment4.params=
-comment4.target=java.lang.String\ toString()
-comment4.text=\r\n\ Creates\ a\ string\ that\ describes\ this\ grid.\r\n\ @return\ a\ string\ with\ descriptions\ of\ all\ objects\ in\ this\ grid\ (not\r\n\ necessarily\ in\ any\ particular\ order),\ in\ the\ format\ {loc\=obj,\ loc\=obj,\r\n\ ...}\r\n
+comment3.target=ArrayList<Location>\ getOccupiedAdjacentLocations(Location)
+comment4.target=String\ toString()
+comment4.text=\nCreates\ a\ string\ that\ describes\ this\ grid.\n@return\ a\ string\ with\ descriptions\ of\ all\ objects\ in\ this\ grid\ (not\nnecessarily\ in\ any\ particular\ order),\ in\ the\ format\ {loc\=obj,\ loc\=obj,\n...}\n\n
 numComments=5

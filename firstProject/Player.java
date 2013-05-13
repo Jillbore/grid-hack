@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class Player here.
@@ -70,11 +71,11 @@ public class Player  extends GridActor
         }
         
         // delays next key check to get more accurate results
-        Greenfoot.delay(4);
+        Greenfoot.delay(10);
     }
     
     /**
-     * Move - Moves where the player specified if player can move there
+     * Moves where the player specified if player can move there
      */
     public void move(int direction)
     {
@@ -104,7 +105,8 @@ public class Player  extends GridActor
         if (!gr.isValid(next))
             return false;
         GridActor neighbor = gr.get(next);
-        return (neighbor == null) || (neighbor instanceof Item);
+        return (neighbor == null) || (neighbor instanceof Item) 
+            || (neighbor instanceof OpenDoor);
         // ok to move into empty location or onto item
         // not ok to move onto any other actor
     }
@@ -122,13 +124,20 @@ public class Player  extends GridActor
       */
     private void search()
     {
-        double prob = 0.0;
-        prob = Math.random() * luck;
+        double prob = Math.random() * luck;
+         
+          // pulls actors from surrounding grid
+          ArrayList<GridActor> actors = getGrid().getNeighbors(getLocation()); 
         
         // search is successful
         if(prob > 0.94)
         {
             // process all actors 1 space away and remove any secret walls/doors
+                for(GridActor a : actors)   // for each neighbouring actor
+                {
+                    if(a instanceof SecretWall) // if a secret wall is found
+                        a.removeSelfFromGrid();          // removes wall
+                }
         }
     }
 
