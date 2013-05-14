@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
+import java.awt.Color;
 
 /**
  * Write a description of class Player here.
@@ -11,7 +12,8 @@ public class Player  extends GridActor
 {
     
     private int count = 0;
-    private int hp, str;
+    private int str;
+    private static int hp;
     private double luck;
 
     // Creates a player for the user to move with
@@ -39,6 +41,11 @@ public class Player  extends GridActor
      */
     public void act() 
     {
+        String text = "Hello World!";
+        Message msgbox = ActorWorld.getMessageBox(); // getting the messagebox object  
+        msgbox.setText(text); // calling the method that changes the text of the message  
+        getWorld().addObject(msgbox, 23, 40); // display at coordinates of your choice 
+        
         if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("j")) // player goes up
         {
             move(0);
@@ -71,7 +78,7 @@ public class Player  extends GridActor
         }
         
         // delays next key check to get more accurate results
-        Greenfoot.delay(10);
+        Greenfoot.delay(5);
     }
     
     /**
@@ -120,14 +127,22 @@ public class Player  extends GridActor
     }
     
      /**
+      * @return current hit points of player
+      */
+    public int getHP()
+    {
+        return hp;
+    }
+    
+     /**
       * Searches for hidden squares for doors, success is based on chance + luck
       */
     private void search()
     {
         double prob = Math.random() * luck;
          
-          // pulls actors from surrounding grid
-          ArrayList<GridActor> actors = getGrid().getNeighbors(getLocation()); 
+        // pulls actors from surrounding grid
+        ArrayList<GridActor> actors = getGrid().getNeighbors(getLocation()); 
         
         // search is successful
         if(prob > 0.94)
@@ -136,7 +151,7 @@ public class Player  extends GridActor
                 for(GridActor a : actors)   // for each neighbouring actor
                 {
                     if(a instanceof SecretWall) // if a secret wall is found
-                        a.removeSelfFromGrid();          // removes wall
+                        a.removeSelfFromGrid();          // removes secret wall
                 }
         }
     }
@@ -166,23 +181,24 @@ public class Player  extends GridActor
         GridActor neighbor = gr.get(next);
         if(neighbor instanceof Fountain)
         {
-            //TextMessage("You drink from the muddy water.", 100);
+            System.out.println("You drink from the muddy water.");
 
             // chooses your "reward"
             double prob = Math.random() * luck;
 
-            if(prob > 0.90)
+            if(prob < 0.2)
             {
-                //TextMessage("It goes up your nose and you lose 1 HP", 100);
+                System.out.println("The water goes up your nose and you lose 1 hp!");
                 takeDamage(1);
             }
         }
 
      }
     
-     public void takeDamage(int dmg)
+     public static void takeDamage(int dmg)
      {
-         hp -= dmg;    
+        hp -= dmg;    
      }
+     
     
 }

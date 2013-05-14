@@ -32,6 +32,7 @@ public class ActorWorld extends World
 {
     private static final int DEFAULT_ROWS = 46;
     private static final int DEFAULT_COLS = 28;
+    public static Message messagebox = new Message("");
 
     private Grid<GridActor> grid;
     
@@ -46,6 +47,10 @@ public class ActorWorld extends World
         firstProjectSetup();
     }
 
+    public static Message getMessageBox()
+    {
+        return messagebox;
+    }
     /**
      * Adds an actor to this world at a given location.
      * @param loc the location at which to add the actor
@@ -176,7 +181,7 @@ public class ActorWorld extends World
         {26, 1, 2, 4, 5, 6, 7, 8, 10, 16, 18, 21, 24, 26, 27, 28},
         {27, 1, 10, 11, 15, 18, 21, 22, 23, 26, 27, 28},
         {28, 1, 10, 11, 12, 14, 15, 18, 19, 20, 24, 26, 27, 28},
-        {29, 1, 10, 11, 15, 18, 26, 27, 28},
+        {29, 1, 10, 11, 15, 18, 21, 23, 26, 27, 28},
         {30, 1, 10, 16, 18, 26, 27, 28},
         {31, 1, 10, 11, 15, 16, 18, 26, 27, 28},
         {32, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 18, 22, 26, 27, 28},
@@ -193,6 +198,14 @@ public class ActorWorld extends World
         {43, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 , 27, 28},
         {44, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 , 27, 28},
         {45, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 , 27, 28}};
+        
+        
+        
+        //29,22
+        add(new Location(21, 29), new SecretWall()); // creates a secret wall
+        add(new Location(18, 12), new SecretWall()); // creates a secret wall
+        add(new Location(4, 18), new SecretWall()); // creates a secret wall
+        add(new Location(3, 25), new SecretWall()); // creates a secret wall
         
         for(int r = 0; r < map.length; r++)     //passes each set of points through build()
         build(map[r]);
