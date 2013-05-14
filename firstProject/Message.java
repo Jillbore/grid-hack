@@ -1,4 +1,5 @@
-import greenfoot.*;  
+import greenfoot.*;
+import greenfoot.GreenfootImage; 
 import java.awt.Color;  
   
 public class Message extends Actor  
@@ -20,6 +21,6 @@ public class Message extends Actor
       
     private void updateImage(String text)  
     {  
-        setImage(new GreenfootImage(text, 30, Color.black, Color.white));  
+        setImage(new GreenfootImage(text, 20, Color.black, Color.white));  
     }  
 }  

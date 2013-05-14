@@ -36,6 +36,6 @@ public class Monster extends Critter
     
     public void attack(GridActor target)
     {
-        
+     Player.takeDamage((int)(Math.random()*3));   
     }
 }

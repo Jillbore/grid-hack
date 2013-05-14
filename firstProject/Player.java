@@ -15,6 +15,8 @@ public class Player  extends GridActor
     private int str;
     private static int hp;
     private double luck;
+    private String text = new String();
+    private Message msgbox = ActorWorld.getMessageBox(); // getting the messagebox object  
 
     // Creates a player for the user to move with
     public Player()
@@ -40,9 +42,7 @@ public class Player  extends GridActor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
-    {
-        String text = "Hello World!";
-        Message msgbox = ActorWorld.getMessageBox(); // getting the messagebox object  
+    {        
         msgbox.setText(text); // calling the method that changes the text of the message  
         getWorld().addObject(msgbox, 23, 40); // display at coordinates of your choice 
         
@@ -76,9 +76,13 @@ public class Player  extends GridActor
             search();
             count++;
         }
+        /*if(Greenfoot.isKeyDown("1")) // player searches for hidden areas
+        {
+            getWorld().setBackground(new GreenfootImage("rivets.png"));
+        }*/
         
         // delays next key check to get more accurate results
-        Greenfoot.delay(5);
+        Greenfoot.delay(3);
     }
     
     /**
@@ -181,16 +185,19 @@ public class Player  extends GridActor
         GridActor neighbor = gr.get(next);
         if(neighbor instanceof Fountain)
         {
-            System.out.println("You drink from the muddy water.");
+            text = "You drink from the muddy water.\n";
 
             // chooses your "reward"
             double prob = Math.random() * luck;
 
             if(prob < 0.2)
             {
-                System.out.println("The water goes up your nose and you lose 1 hp!");
+                text += "The water goes up your nose and you lose 1 hp!\n";
                 takeDamage(1);
             }
+            
+            msgbox.setText(text); // calling the method that changes the text of the message  
+            getWorld().addObject(msgbox, 23, 40); // display at coordinates of your choice 
         }
 
      }

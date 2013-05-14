@@ -32,6 +32,7 @@ public class GridActor extends greenfoot.Actor
 {
     private Location location;
     private Color color;
+    private static String text = new String();
 
     /**
      * Constructs a blue actor that is facing north.
@@ -43,6 +44,29 @@ public class GridActor extends greenfoot.Actor
         location = null;
     }
 
+    /**
+     * Sets the text to be output by Message
+     */
+    public static void setText(String message)
+    {
+        text = message;
+    }
+    
+    /**
+     * Adds another message to the current message
+     */
+    public static void addToText(String message)
+    {
+        text += message;
+    }
+    
+    /**
+     * @returns the text to show
+     */
+    public static String getText()
+    {
+        return text;
+    }
     /**
      * Gets the color of this actor.
      * @return the color of this actor
