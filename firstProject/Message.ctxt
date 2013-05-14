@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Message()
+comment1.params=text
+comment1.target=Message(java.lang.String)
+comment2.params=text
+comment2.target=void\ setText(java.lang.String)
+comment3.params=text
+comment3.target=void\ updateImage(java.lang.String)
+numComments=4
