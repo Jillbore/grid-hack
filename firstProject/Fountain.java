@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Fountain here.
+ * The player may drink from the fountain by pressing "q" to quaff
  * 
  * @author (your name) 
  * @version (a version number or a date)

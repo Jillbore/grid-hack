@@ -28,23 +28,30 @@ import java.util.ArrayList;
  * This class is not tested on the AP CS A and AB exams.
  */
 
-public class ActorWorld extends World
+public class ActorWorld  extends World
 {
     private static final int DEFAULT_ROWS = 46;
     private static final int DEFAULT_COLS = 28;
     public static Message messagebox = new Message("");
+    public static Player user =  new Player();
 
-    private Grid<GridActor> grid;
+    private static Grid<GridActor> grid;
     
     /**
      * Constructs an actor world with a default grid.
      */
     public ActorWorld()
     {
-        super(DEFAULT_ROWS, DEFAULT_COLS, 25);
+        super(DEFAULT_ROWS, DEFAULT_COLS, 26);
         paintGrid();
         grid = new BoundedGrid<GridActor>(this);
         firstProjectSetup();
+    } 
+    
+    public static Player getPlayer()
+    {
+        return user;
+        
     }
 
     public static Message getMessageBox()
@@ -114,7 +121,7 @@ public class ActorWorld extends World
     /**
      * Greenfoot: Paint the grid pattern onto the background.
      */
-    public Grid<GridActor> getGrid()
+    public static Grid<GridActor> getGrid()
     {
         return grid;
     }
@@ -142,10 +149,10 @@ public class ActorWorld extends World
      */
     public void firstProjectSetup() 
     {
-        /*GreenfootSound bgm = new GreenfootSound("The Naïve Bard.wav");  // background music
+        GreenfootSound bgm = new GreenfootSound("The Naïve Bard.wav");  // background music
         bgm.playLoop();
-        bgm.setVolume(50);
-        */
+        bgm.setVolume(45);
+        
         //first digit is the row, each other digit is a column
         //together, they form an (x,y) point
         
@@ -211,10 +218,51 @@ public class ActorWorld extends World
         build(map[r]);
         
         add(new Location(2, 3), new Fountain()); // creates a fountain from which to drink
-        add(new Location(2, 2), new Player());  //creates the player
+        add(new Location(2, 2), user);  //creates the player
         
     }
     
+    public void secondProjectSetup() 
+    {
+        GreenfootSound bgm = new GreenfootSound("The Naïve Bard.wav");  // background music
+        bgm.playLoop();
+        bgm.setVolume(50);
+        
+        //first digit is the row, each other digit is a column
+        //together, they form an (x,y) point
+        
+        //You can thank me now, Michael; I thought of a genius system    -Tyler
+        
+        int [] [] map2 = {
+        {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28},
+        {1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28},
+        {2, 1, 3, 4, 9, 10, 11, 12, 13, 14, 15, 21},
+        {3, 1, 7, 8, 17, 18, 19, 21, 23},
+        {4, 1, 2, 3, 4, 7, 8, 10, 1, 12, 13, 14, 15, 17, 21, 23},
+        {5, 1, 2, 3, 4, 5, 10, 19, 20, 21, 23, 24, 25, 27},
+        {6, 4, 5, 6, 7, 10, 12, 13, 14, 19, 25, 27, 28},
+        {7, 2, 4, 5, 6, 7, 8, 9, 10, 12, 18, 21, 22, 23, 25},
+        {8, 1, 12, 18, 19, 20, 21, 22, 23, 25, 26, 27},
+        {9, 5, 6, 12, 14, 16, 23, 24, 25, 26, 27},
+        {10, 2, 4, 5, 6, 11, 12, 14, 17, 19, 20, 21},
+        {11, 16, 20, 21, 22, 23, 24, 25, 26, 27, 28},
+        {12, 2, 4, 7, 8, 10, 11, 13, 14 ,16, 17, 18, 20, 21, 25},
+        {13, 6, 712, 20, 23, 25, 27},
+        {14, 5, 6, 7, 9, 10, 12, 20, 23, 25, 27},
+        {15, 5, 6, 7, 12, 20, 21, 23, 25, 27},
+        {16, 9, 12, 20, 27},
+        {17, 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 20, 23, 24, 25, 26, 27},
+        {18, 12, 20, 22, 26},
+        {19, 2, 5, 6, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 25},
+        {20, 2, 3, 5, 6, 7, 8, 16, 27, 28},
+        {21, 5, 10, 11, 12, 13, 14, 17, 19, 20, 23, 25},
+        {22, 5, 7, 9, 15, 17, 20, 22, 25, 27},
+        {23, 5, 6, 10, 11, 13, 15, 18, 20, 24, 27},
+        {24, 6, 8, 9, 13, 15, 18, 20, 21, 23, 24, 26}
+        };
+        
+    }
+   
     public void build(int row[])
     {
         for(int k = 1; k < row.length; k++)//places a wall at each point made by the array

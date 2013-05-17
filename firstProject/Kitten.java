@@ -1,26 +1,25 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList;
 
 /**
- * Write a description of class Dwarf here.
+ * Write a description of class Kitten here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Dwarf extends Monster
+public class Kitten extends Monster
 {
     private boolean moved = false; 
     private boolean attacking = true;
     private int hp, lvl;
-    int aggression = 2;
+    int aggression = 50;
     int range = 1;
-    int damage = 2;
-    double accuracy = 0.4; //0 to 1
+    int damage = 0;
+    double accuracy = 0.6; //0 to 1
     private String text = "";
     private Message msgbox = ActorWorld.getMessageBox(); // getting the messagebox object  
     
     //creates a dwarf with stats
-    public Dwarf()
+    public Kitten()
     {
         hp = 5;
         lvl = 1;
@@ -32,10 +31,10 @@ public class Dwarf extends Monster
         //processActors(actors);
         if(true)
         {
-        if(!attacking)
-        wander();
-        if(attacking)
-        attack(ActorWorld.getPlayer());
+            if(!attacking)
+                wander();
+            if(attacking)
+                attack(ActorWorld.getPlayer());
         }
     }
     public void wander()
@@ -95,13 +94,13 @@ public class Dwarf extends Monster
         // 60% chance to hit attack
         if((prob > accuracy)/* && (target instanceof Player)*/)
         {
-            text = "The dwarf throws booze at your face, dealing " + dmg + " damage";
+            text = "The kitten paws at you.";
             Player.takeDamage(dmg);
         }
         // 40% chance to miss attack
         if((prob <= accuracy)/* && (target instanceof Player)*/)
         {
-            text = "The dwarf's booze splatters the floor as you dodge it.";
+            text = "The kitten meows.";
         }
         
         msgbox.setText(text); // calling the method that changes the text of the message  

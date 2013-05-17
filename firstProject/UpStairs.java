@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class UpStairs here.
+ * Moves the player to another floor
  * 
  * @author (your name) 
  * @version (a version number or a date)

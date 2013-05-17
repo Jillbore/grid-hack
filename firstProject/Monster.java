@@ -34,8 +34,9 @@ public class Monster extends Critter
         moved = true;
     }
     
+    //The damage taken is random
     public void attack(GridActor target)
     {
-     Player.takeDamage((int)(Math.random()*3));   
+        Player.takeDamage(1);   
     }
 }

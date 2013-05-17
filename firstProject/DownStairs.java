@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class DownStairs here.
+ * Allows the player to move down a floor
  * 
  * @author (your name) 
  * @version (a version number or a date)

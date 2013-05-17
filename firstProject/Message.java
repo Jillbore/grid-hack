@@ -2,6 +2,7 @@ import greenfoot.*;
 import greenfoot.GreenfootImage; 
 import java.awt.Color;  
   
+//sets the text format for the game
 public class Message extends Actor  
 {  
     public Message()  

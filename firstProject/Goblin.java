@@ -2,27 +2,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Dwarf here.
+ * Write a description of class Goblins here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Dwarf extends Monster
+public class Goblin extends Monster
 {
     private boolean moved = false; 
-    private boolean attacking = true;
+    private boolean attacking = false;
     private int hp, lvl;
-    int aggression = 2;
+    int aggression = 5;
     int range = 1;
-    int damage = 2;
+    int damage = 3;
     double accuracy = 0.4; //0 to 1
     private String text = "";
     private Message msgbox = ActorWorld.getMessageBox(); // getting the messagebox object  
     
     //creates a dwarf with stats
-    public Dwarf()
+    public Goblin()
     {
-        hp = 5;
+        hp = 6;
         lvl = 1;
     }
     
@@ -95,13 +95,13 @@ public class Dwarf extends Monster
         // 60% chance to hit attack
         if((prob > accuracy)/* && (target instanceof Player)*/)
         {
-            text = "The dwarf throws booze at your face, dealing " + dmg + " damage";
+            text = "The goblin punches you, dealing " + dmg + " damage";
             Player.takeDamage(dmg);
         }
         // 40% chance to miss attack
         if((prob <= accuracy)/* && (target instanceof Player)*/)
         {
-            text = "The dwarf's booze splatters the floor as you dodge it.";
+            text = "The goblin stumbles as you dodge it's punch.";
         }
         
         msgbox.setText(text); // calling the method that changes the text of the message  

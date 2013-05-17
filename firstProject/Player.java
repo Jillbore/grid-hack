@@ -3,22 +3,21 @@ import java.util.ArrayList;
 import java.awt.Color;
 
 /**
- * Write a description of class Player here.
+ * Player is what the user controls in able to interact with the environment
  * 
- * @author (your name) 
- * @version (a version number or a date)
  */
-public class Player  extends GridActor
+public class Player extends GridActor
 {
     
     private int count = 0;
     private int str;
     private static int hp;
     private double luck;
-    private String text = new String();
-    private Message msgbox = ActorWorld.getMessageBox(); // getting the messagebox object  
+    private String text = new String(); 
+    private Inventory list = new Inventory();
+    private boolean trapped = false;
 
-    // Creates a player for the user to move with
+    // Creates a player with stats for the user to move
     public Player()
     {
         hp = 10;
@@ -37,15 +36,18 @@ public class Player  extends GridActor
         //putSelfInGrid(this, loc);
     }
     
+    public Location getLoc()
+    {
+        Location loc = getLocation();
+        return loc;
+    }
+    
     /**
      * Act - Does whatever the Player has specified to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
-    {        
-        msgbox.setText(text); // calling the method that changes the text of the message  
-        getWorld().addObject(msgbox, 23, 40); // display at coordinates of your choice 
-        
+    {  
         if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("j")) // player goes up
         {
             move(0);
@@ -76,14 +78,29 @@ public class Player  extends GridActor
             search();
             count++;
         }
-        /*if(Greenfoot.isKeyDown("1")) // player searches for hidden areas
+        if(Greenfoot.isKeyDown(",")) // player goes down a stairwell
         {
-            getWorld().setBackground(new GreenfootImage("rivets.png"));
-        }*/
+            desend();
+            count++;
+        }
+        //setImage("Player1norm.png");
+        
+        
+        if(Greenfoot.isKeyDown("1")) // player searches for hidden areas
+        {
+            getWorld().setBackground(new GreenfootImage("ani_starfield.gif"));
+        }
         
         // delays next key check to get more accurate results
         Greenfoot.delay(3);
     }
+
+     public void buttonCheck()
+     {
+        //while(Greenfoot.isKeyDown(""));
+        //    buttonCheck();
+   
+     }
     
     /**
      * Moves where the player specified if player can move there
@@ -120,22 +137,6 @@ public class Player  extends GridActor
             || (neighbor instanceof OpenDoor);
         // ok to move into empty location or onto item
         // not ok to move onto any other actor
-    }
-    
-     /**
-      * @return the number of moves the player has done
-      */
-    public int getTime()
-    {
-        return count;
-    }
-    
-     /**
-      * @return current hit points of player
-      */
-    public int getHP()
-    {
-        return hp;
     }
     
      /**
@@ -185,27 +186,81 @@ public class Player  extends GridActor
         GridActor neighbor = gr.get(next);
         if(neighbor instanceof Fountain)
         {
-            text = "You drink from the muddy water.\n";
+            setText("You drink from the muddy water.\n");
 
             // chooses your "reward"
             double prob = Math.random() * luck;
 
             if(prob < 0.2)
             {
-                text += "The water goes up your nose and you lose 1 hp!\n";
+                addToText("The water goes up your nose and you lose 1 hp!\n");
                 takeDamage(1);
             }
             
-            msgbox.setText(text); // calling the method that changes the text of the message  
-            getWorld().addObject(msgbox, 23, 40); // display at coordinates of your choice 
+            getWorld().addObject(getMsgbox(), 36, 5); // display at coordinates of your choice 
         }
 
      }
-    
+     
+     /**
+      * Initializes a new world and transports player there
+      */
+     public void desend()
+     {
+         
+     }
+     
+     /**
+      * Picks up an item and adds it to an inventory
+      */
+     /*public void pickup()
+     {
+        Grid<GridActor> gr = getGrid();
+        Location loc = getLocation(); // stores the current location of player
+        Location next = loc.getAdjacentLocation(0); // it chooses up by default
+        
+        if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("l")) // player chooses right
+        {
+            next = loc.getAdjacentLocation(90); // gets actor to the east
+        }
+        if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("k")) // player chooses down
+        {
+            next = loc.getAdjacentLocation(180); // gets actor to the south
+        }
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("h")) // player chooses left
+        {
+            next = loc.getAdjacentLocation(270); // gets actor to the west
+        }
+
+        GridActor neighbor = gr.get(next);
+        
+        // adds a mushroom to your inventory
+        //if(neighbor instanceof Mushroom)
+            //int i;
+            //neighbor.addItem(neighbor, "Mushroom");
+     }*/
+     
+    //causes the player's hp to reduce accordingly
      public static void takeDamage(int dmg)
      {
         hp -= dmg;    
      }
+     
+     /**
+      * @return the number of moves the player has done
+      */
+    public int getTime()
+    {
+        return count;
+    }
+    
+     /**
+      * @return current hit points of player
+      */
+    public int getHP()
+    {
+        return hp;
+    }
      
     
 }

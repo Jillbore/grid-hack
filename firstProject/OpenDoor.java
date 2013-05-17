@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class OpenDoor here.
+ * Allows the player to pass through, can become a closed door
  * 
  * @author (your name) 
  * @version (a version number or a date)

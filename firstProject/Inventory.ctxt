@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Inventory()
+comment1.params=item\ itemName
+comment1.target=void\ addItem(GridActor,\ java.lang.String)
+comment1.text=\r\n\ Adds\ an\ item\ to\ your\ inventory\r\n
+comment2.params=
+comment2.target=void\ showInv()
+comment2.text=\r\n\ Prints\ out\ inventory\ to\ see\r\n
+numComments=3

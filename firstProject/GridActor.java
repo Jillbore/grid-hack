@@ -33,13 +33,13 @@ public class GridActor extends greenfoot.Actor
     private Location location;
     private Color color;
     private static String text = new String();
+    private static Message msgbox = ActorWorld.getMessageBox(); // getting the messagebox object 
 
     /**
      * Constructs a blue actor that is facing north.
      */
     public GridActor()
     {
-        //color = Color.BLUE;
         setDirection(Location.NORTH);
         location = null;
     }
@@ -50,6 +50,7 @@ public class GridActor extends greenfoot.Actor
     public static void setText(String message)
     {
         text = message;
+        msgbox.setText(text);   // calling the method that changes the text of the message  
     }
     
     /**
@@ -58,14 +59,23 @@ public class GridActor extends greenfoot.Actor
     public static void addToText(String message)
     {
         text += message;
+        msgbox.setText(text);   // calling the method that changes the text of the message  
     }
     
     /**
-     * @returns the text to show
+     * @returns the text that will be shown
      */
     public static String getText()
     {
         return text;
+    }
+    
+    /**
+     * @returns msgbox
+     */
+    public static Message getMsgbox()
+    {
+        return msgbox;
     }
     /**
      * Gets the color of this actor.

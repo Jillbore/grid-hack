@@ -2,33 +2,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 
 /**
- * Write a description of class Mushroom here.
+ * Mushrooms are dropped by dwarves. They may be used by the player.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Mushroom  extends Item
+public class Mushroom extends GridActor
 {
-
-    // lose 5% of color value in each step
-
+    private String name;
+    
     /**
-     * Constructs a pink mushroom.
+     * Constructs a mushroom.
      */
     public Mushroom()
     {
-        setColor(Color.RED);
+        name = "Mushroom";
     }
-
-    // Just sits still and does nothing
-    public void act()
+    
+    /**
+     * @return the item's name
+     */
+    public String getItemName()
     {
-        Color c = getColor();
-        int red = (int) (c.getRed() * (0.5));
-        int green = (int) (c.getGreen() * (0.5));
-        int blue = (int) (c.getBlue() * (0.5));
-
-        setColor(new Color(red, green, blue));
+        return name;
     }
 }
 

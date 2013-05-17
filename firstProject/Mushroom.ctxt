@@ -1,7 +1,8 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Mushroom()
-comment0.text=\r\n\ Constructs\ a\ pink\ mushroom.\r\n
+comment0.text=\r\n\ Constructs\ a\ mushroom.\r\n
 comment1.params=
-comment1.target=void\ act()
+comment1.target=java.lang.String\ getItemName()
+comment1.text=\r\n\ @return\ the\ item's\ name\r\n
 numComments=2

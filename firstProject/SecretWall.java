@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SecretWall here.
+ * The secret wall looks like a regular wall, but can be removed if a search is completed by the player
  * 
  * @author (your name) 
  * @version (a version number or a date)
